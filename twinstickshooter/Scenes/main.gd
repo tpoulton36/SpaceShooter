@@ -11,7 +11,7 @@ func spawn_mob():
 	new_mob.global_position = %PathFollow2D.global_position
 	add_child(new_mob)
 	
-
+#test comment 
 
 func _on_timer_timeout() -> void:
 	spawn_mob() # Replace with function body.
