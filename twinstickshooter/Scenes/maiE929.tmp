@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcnt772xiery5"]
+
+[ext_resource type="Texture2D" uid="uid://bs2od5o0jqb70" path="res://background2.png" id="1_3mv2r"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_3wcqc"]
+[ext_resource type="Texture2D" uid="uid://nc316rwasauu" path="res://Scenes/pngkey.com-spaceship-png-315953.png" id="2_ykkrn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tiggn"]
+radius = 1.79999
+height = 6.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bctwd"]
+size = Vector2(3.6, 14)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(638, 364)
+scale = Vector2(0.380374, 0.394401)
+texture = ExtResource("1_3mv2r")
+region_rect = Rect2(416, 208, 64, 176)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_top = -3.0
+offset_right = 1280.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+offset_top = 720.0
+offset_right = 1283.0
+offset_bottom = 725.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Background"]
+offset_left = -4.0
+offset_top = -3.0
+offset_bottom = 725.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Background"]
+offset_left = 1280.0
+offset_top = -3.0
+offset_right = 1283.0
+offset_bottom = 725.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.025, 0.025)
+script = ExtResource("1_3wcqc")
+
+[node name="Ship" type="Sprite2D" parent="Player"]
+rotation = 1.5708
+texture = ExtResource("2_ykkrn")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-80, -1.90735e-06)
+rotation = 1.5708
+scale = Vector2(200, 200)
+shape = SubResource("CapsuleShape2D_tiggn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player"]
+position = Vector2(-560, 0)
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_bctwd")

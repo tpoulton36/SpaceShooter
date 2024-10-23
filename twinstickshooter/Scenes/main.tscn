@@ -1,0 +1,185 @@
+[gd_scene load_steps=13 format=3 uid="uid://bcnt772xiery5"]
+
+[ext_resource type="Texture2D" uid="uid://bs2od5o0jqb70" path="res://background2.png" id="1_3mv2r"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_3wcqc"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_v4pty"]
+[ext_resource type="Texture2D" uid="uid://nc316rwasauu" path="res://Scenes/pngkey.com-spaceship-png-315953.png" id="2_ykkrn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tiggn"]
+radius = 1.4
+height = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bctwd"]
+size = Vector2(3.6, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48g0h"]
+size = Vector2(1440.48, 398.512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbpsf"]
+size = Vector2(520, 640)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwmq0"]
+size = Vector2(480, 240)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p32hc"]
+bg_color = Color(0.0825688, 0.172962, 0.294047, 1)
+corner_radius_top_left = 19
+corner_radius_top_right = 19
+corner_radius_bottom_right = 19
+corner_radius_bottom_left = 19
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2g4x0"]
+bg_color = Color(0.794537, 0.80259, 0.167989, 1)
+corner_radius_top_left = 19
+corner_radius_top_right = 19
+corner_radius_bottom_right = 19
+corner_radius_bottom_left = 19
+
+[sub_resource type="Curve2D" id="Curve2D_yy6xy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -106, -79, 0, 0, 0, 0, 1327, -79, 0, 0, 0, 0, 1324.89, 753.745, 0, 0, 0, 0, -113.447, 753.745, 0, 0, 0, 0, -109, -79)
+}
+point_count = 5
+
+[node name="Main" type="Node2D"]
+position = Vector2(4, 0)
+script = ExtResource("1_v4pty")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(640, 361)
+scale = Vector2(0.380374, 0.394401)
+texture = ExtResource("1_3mv2r")
+region_rect = Rect2(416, 208, 64, 176)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_top = -3.0
+offset_right = 1280.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+offset_top = 720.0
+offset_right = 1283.0
+offset_bottom = 725.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Background"]
+offset_left = -4.0
+offset_top = -3.0
+offset_bottom = 725.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Background"]
+offset_left = 1280.0
+offset_top = -3.0
+offset_right = 1283.0
+offset_bottom = 725.0
+color = Color(0.423529, 0.443137, 0.458824, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.025, 0.025)
+collision_mask = 4
+script = ExtResource("1_3wcqc")
+
+[node name="Ship" type="Sprite2D" parent="Player"]
+rotation = 1.5708
+texture = ExtResource("2_ykkrn")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-240, -1.90729e-06)
+rotation = 1.5708
+scale = Vector2(200, 200)
+shape = SubResource("CapsuleShape2D_tiggn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player"]
+position = Vector2(-560, 0)
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_bctwd")
+
+[node name="BurstTimer" type="Timer" parent="Player"]
+wait_time = 0.111
+
+[node name="HurtBox" type="Area2D" parent="Player"]
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Player/HurtBox"]
+modulate = Color(1, 0.0588235, 1, 1)
+position = Vector2(-551.824, 0.202148)
+rotation = -1.58789
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_48g0h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox"]
+modulate = Color(1, 0.0588235, 1, 1)
+position = Vector2(-100, 0)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_wbpsf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/HurtBox"]
+modulate = Color(1, 0.0588235, 1, 1)
+position = Vector2(400, 0)
+shape = SubResource("RectangleShape2D_bwmq0")
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+unique_name_in_owner = true
+offset_left = -1198.0
+offset_top = 987.0
+offset_right = 751.0
+offset_bottom = 1365.0
+rotation = -1.57668
+theme_override_styles/background = SubResource("StyleBoxFlat_p32hc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2g4x0")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-22819.8, -13116.7)
+scale = Vector2(37.9049, 38.5232)
+curve = SubResource("Curve2D_yy6xy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-106, -79)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.301
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+offset_left = -67.0
+offset_top = -53.0
+offset_right = 1351.0
+offset_bottom = 788.0
+color = Color(0.255227, 0.1088, 0.34, 0.745098)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -41.5
+offset_right = 88.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.803922, 0.843137, 1)
+theme_override_font_sizes/font_size = 61
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Player/BurstTimer" to="Player" method="_on_BurstTimer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
